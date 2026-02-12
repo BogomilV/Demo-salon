@@ -5,7 +5,7 @@ const Hero: React.FC = () => {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80;
+      const offset = 100;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -19,8 +19,8 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-white pt-40 sm:pt-48 md:pt-52 lg:pt-0">
-      <div className="container mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center h-full pb-12 lg:pb-0">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-white pt-32 sm:pt-40 md:pt-48 lg:pt-32">
+      <div className="container mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center h-full pb-16">
         <div className="lg:col-span-7 z-10 text-center lg:text-left">
           <p className="text-plum uppercase tracking-[0.4em] text-[10px] md:text-xs mb-6 font-bold animate-fade-in opacity-50">
             L’Art de la Manucure
