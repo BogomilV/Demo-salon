@@ -8,7 +8,7 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80;
+      const offset = 100; // Increased offset to account for solid header
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -54,10 +54,10 @@ const Navbar: React.FC = () => {
 
   return (
     <nav 
-      className={`fixed top-0 w-full z-[100] transition-all duration-500 ${
+      className={`fixed top-0 w-full z-[100] transition-all duration-300 ${
         isScrolled 
-        ? 'glass-effect py-2 md:py-3 shadow-md border-b border-plum/5' 
-        : 'bg-transparent py-4 md:py-8'
+        ? 'bg-white/95 backdrop-blur-md py-3 shadow-md border-b border-plum/5' 
+        : 'bg-white py-5 border-b border-gray-50 shadow-sm'
       }`}
     >
       <div className="container mx-auto px-4 md:px-8 flex justify-between items-center relative">
@@ -71,14 +71,14 @@ const Navbar: React.FC = () => {
           </span>
         </div>
         
-        {/* Desktop Links - Unified typography (Serif, Sentence Case, No underlining) */}
-        <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 px-10 py-3 rounded-full bg-white/90 backdrop-blur-md border border-plum/10 shadow-sm">
-          <div className="flex space-x-10 text-[15px] font-medium text-plum serif">
+        {/* Desktop Links - Capsule style with clear background */}
+        <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 px-8 py-2.5 rounded-full bg-gray-50/80 border border-plum/5">
+          <div className="flex space-x-8 text-[14px] font-medium text-plum serif">
             {navItems.map((item) => (
               <button 
                 key={item.id} 
                 onClick={() => scrollTo(item.id)} 
-                className="hover:opacity-60 transition-all"
+                className="hover:opacity-60 transition-all px-2"
               >
                 {item.label}
               </button>
@@ -90,15 +90,15 @@ const Navbar: React.FC = () => {
         <div className="flex items-center space-x-2 md:space-x-4 relative z-[110]">
           <button 
             onClick={() => scrollTo('booking')}
-            className="bg-plum text-white px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full text-[9px] sm:text-[10px] md:text-[11px] font-bold tracking-widest uppercase hover:shadow-lg transition-all active:scale-95 flex-shrink-0"
+            className="bg-plum text-white px-5 sm:px-6 md:px-8 py-3 rounded-full text-[10px] md:text-[11px] font-bold tracking-widest uppercase hover:shadow-lg hover:bg-plum/90 transition-all active:scale-95 flex-shrink-0"
           >
             Запази час
           </button>
 
           <div className="relative" ref={menuRef}>
             <button 
-              className={`lg:hidden w-10 h-10 md:w-12 md:h-12 flex items-center justify-center focus:outline-none transition-all rounded-full bg-white/90 border border-plum/20 text-plum shadow-sm ${
-                isMenuOpen ? 'ring-2 ring-plum/10' : ''
+              className={`lg:hidden w-10 h-10 flex items-center justify-center focus:outline-none transition-all rounded-full bg-gray-50 border border-plum/10 text-plum ${
+                isMenuOpen ? 'bg-plum text-white' : ''
               }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle Menu"
@@ -109,25 +109,25 @@ const Navbar: React.FC = () => {
                 </svg>
               ) : (
                 <div className="w-4 h-3.5 relative flex flex-col justify-between">
-                  <span className="w-full h-0.5 bg-current transition-all"></span>
-                  <span className="w-full h-0.5 bg-current transition-all"></span>
-                  <span className="w-full h-0.5 bg-current transition-all"></span>
+                  <span className="w-full h-0.5 bg-current"></span>
+                  <span className="w-full h-0.5 bg-current"></span>
+                  <span className="w-full h-0.5 bg-current"></span>
                 </div>
               )}
             </button>
 
             {/* Mobile Dropdown Menu */}
             <div 
-              className={`lg:hidden absolute top-[calc(100%+12px)] right-0 w-60 bg-white border border-plum/10 rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 transform origin-top-right ${
-                isMenuOpen ? 'scale-100 opacity-100' : 'scale-90 opacity-0 pointer-events-none'
+              className={`lg:hidden absolute top-[calc(100%+16px)] right-0 w-64 bg-white border border-plum/10 rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 transform origin-top-right ${
+                isMenuOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'
               }`}
             >
-              <div className="p-3 flex flex-col">
+              <div className="p-2 flex flex-col">
                 {navItems.map((item) => (
                   <button 
                     key={item.id}
                     onClick={() => scrollTo(item.id)} 
-                    className="text-left px-5 py-3.5 text-base serif italic text-plum hover:bg-lavender/30 rounded-lg transition-colors"
+                    className="text-left px-5 py-4 text-base serif italic text-plum hover:bg-lavender/30 rounded-xl transition-colors"
                   >
                     {item.label}
                   </button>
