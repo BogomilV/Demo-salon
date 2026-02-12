@@ -1,0 +1,7 @@
+{
+  "name": "Nail Art Bilqna - High-End Salon & Academy",
+  "description": "A luxury digital presence for Nail Art Bilqna, featuring an editorial design, online bookings, and academy enrollments.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
